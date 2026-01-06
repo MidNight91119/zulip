@@ -222,9 +222,13 @@ function set_up_create_field_form(): void {
 }
 
 function open_custom_profile_field_form_modal(): void {
+    const sorted_custom_profile_field_types = Object.values(
+        realm.custom_profile_field_types,
+    ).toSorted((a, b) => a.name.localeCompare(b.name));
+
     const html_body = render_add_new_custom_profile_field_form({
         realm_default_external_accounts: realm.realm_default_external_accounts,
-        custom_profile_field_types: realm.custom_profile_field_types,
+        custom_profile_field_types: sorted_custom_profile_field_types,
     });
 
     function create_profile_field(): void {
